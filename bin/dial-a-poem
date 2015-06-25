@@ -1,0 +1,25 @@
+#!/usr/bin/env node
+var dial = require('../index');
+var minimist = require('minimist');
+var fs = require('fs');
+
+var argv = minimist(process.argv.slice(2), {
+  alias: { h: 'help', s: 'silent', r: 'recurse' }
+});
+
+function printHelp() {
+  fs.createReadStream(__dirname + '/usage.txt').pipe(process.stdout);
+}
+
+if (argv.help) {
+  printHelp();
+  return;
+} else {
+  if (argv.recurse) {
+    if (argv.silent) dial.playContinuous(true);
+    else dial.playContinuous();
+  } else {
+    if (argv.silent) dial.play(true);
+    else dial.play();
+  }
+}
