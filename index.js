@@ -167,9 +167,9 @@ function playPoem(poem, cb) {
 
 function makeCall(poem, cb) {
   if (!cb) cb = process.exit;
-  ja.playFile(path.resolve('./dial.mp3'), function() {
+  ja.playFile(path.resolve(__dirname + '/dial.mp3'), function() {
     playPoem(poem, cb);
-  })
+  });
 }
 
 function playContinuous(index) {
